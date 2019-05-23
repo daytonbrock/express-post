@@ -14,10 +14,31 @@
     TO GET SERVER RUNNING
 1. bring express
 
+
+    AFTERNOON LECTURE NOTES
+
+CRUD methods
+    C r e a t e
+        POST ( what route are we going to? what is the thing you would like to add? )
+    R e a d / R e t r i e v e
+        GET ( we've seen get requests - this is what the browser does. )
+    U p d a t e
+        PUT
+    D e l e t e
+        DELETE
+
+HTTP (hyper text transfer protocol)
+
+
+// Postman is great for building out your server
+// AJAX
+// Asynchronous, meaning they don't necessarily happen in order
+
 */
 
-// brings in express
+// brings in express and body-parser
 const express = require( 'express' );
+const bodyParser = require( 'body-parser' );
 // accesses the build application function in express
 const app = express();
 
@@ -26,6 +47,48 @@ const port = 5000;
 app.listen( port, () => {
     console.log( 'running on port', port );
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//THIS IS IMPORTANT PAY ATTENTION REVIEW THESE NOTES
+// this line creates req.body
+// if it is not here, or if it is after your posts
+// you will suffer................................
+app.use( bodyParser.urlencoded( {extended: true} ) );
+//THIS IS IMPORTANT PAY ATTENTION REVIEW THESE NOTES
+// HEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEY
+//HEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEY
+//HEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEY
+//HEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEY
+// HEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEYHEY
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // bring in static pages (right now, just index.html)
 app.use( express.static( 'server/public' ) );
@@ -50,3 +113,11 @@ let quotes_data = [
 app.get( '/quotes', ( req, res ) => {
     res.send( quotes_data );
 });
+
+
+app.post( '/new', ( req, res ) => {
+    // req.body is only accessable if this line of code is written ==> app.use( bodyParser.urlencoded( {extended: true} ) );
+    quotes_data.push( req.body );
+    // status 201 says created
+    res.sendStatus( 201 );
+} );

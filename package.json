@@ -4,11 +4,12 @@
   "description": "express post introduction",
   "main": "server/server.js",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.0"
   },
   "devDependencies": {},
   "scripts": {
-    "start":  "node server/server.js", 
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dayton Brock",
